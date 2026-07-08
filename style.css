@@ -112,10 +112,10 @@ header {
 }
 
 #main-nav a:hover {
-    color: var(--text-primary);
+    color: var(--color-accent);
 }
 
-/* Subtly animated underline on hover */
+/* Subtly animated underline on hover using accent color */
 #main-nav a::after {
     content: '';
     position: absolute;
@@ -123,12 +123,95 @@ header {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--grad-primary);
+    background: var(--color-accent);
     transition: var(--transition-fast);
 }
 
 #main-nav a:hover::after {
     width: 100%;
+}
+
+/* Hamburger Toggle Button */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+/* Transform hamburger lines to X when active */
+.nav-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Responsive Menu under 768px */
+@media (max-width: 767px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    #main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-color);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+        pointer-events: none;
+        z-index: 99;
+    }
+
+    #main-nav.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    #main-nav a {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
 }
 
 /* ==========================================
