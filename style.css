@@ -373,8 +373,9 @@ main {
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
@@ -387,6 +388,8 @@ main {
     display: flex;
     flex-direction: column;
     transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+    max-width: 380px;
 }
 
 .project-card:hover {
@@ -482,17 +485,8 @@ main {
 
 /* Responsive Grid breakpoints */
 @media (min-width: 768px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
     .section-title {
         font-size: 2.75rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
     }
 }
 
